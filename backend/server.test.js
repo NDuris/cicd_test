@@ -19,16 +19,17 @@ describe('GET /api', () => {
 });
 
 describe('GET /add', () => {
-  it('responds with the sum of two numbers', done => {
-    // Send anmodning til /add med to tal som query parametre
-    request(app)
-      .get('/add')
-      .query({ num1: 5, num2: 3 }) // Eksempel på to tal, der skal tilføjes
-      .expect('Content-Type', /json/) // Forvent indholdstypen JSON
-      .expect('Sum of 5 and 3 is 8.') // Forvent den forventede sum som svar
-      .end((err, res) => {
-        if (err) return done(err);
-        done();
-      });
+    it('responds with the sum of two numbers', done => {
+      // Send anmodning til /add med to tal som query parametre
+      request(app)
+        .get('/add')
+        .query({ num1: 5, num2: 3 }) // Eksempel på to tal, der skal tilføjes
+        .expect('Content-Type', /text/) // Opdater forventning til tekstindholdstype
+        .expect('Sum of 5 and 3 is 8.') // Opdater forventning til den forventede svartekst
+        .end((err, res) => {
+          if (err) return done(err);
+          done();
+        });
+    });
   });
-});
+  
