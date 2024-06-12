@@ -4,4 +4,5 @@ document.getElementById('fetchButton').addEventListener('click', () => {
         .then(data => {
             document.getElementById('data').innerText = data;
         });
+        
 });
