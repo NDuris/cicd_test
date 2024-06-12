@@ -30,9 +30,3 @@ jobs:
       - name: Install frontend dependencies
         run: npm install
         working-directory: ./frontend
-
-      - name: Build frontend
-        run: npm run build
-        working-directory: ./frontend
-
-      # Add deployment step here for your chosen hosting platform
