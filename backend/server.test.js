@@ -1,7 +1,8 @@
 const request = require('supertest');
 const express = require('express');
 
-const app = express();
+const app = require('./server'); // Importing the Express application instance from server.js
+
 app.get('/api', (req, res) => {
   res.send('Hello World!');
 });
