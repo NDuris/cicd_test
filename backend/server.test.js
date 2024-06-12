@@ -3,7 +3,7 @@ const express = require('express');
 
 const app = express();
 app.get('/api', (req, res) => {
-  res.send('Hello World!');
+  res.send('Hello CI/CD!');
 });
 
 describe('GET /api', () => {
