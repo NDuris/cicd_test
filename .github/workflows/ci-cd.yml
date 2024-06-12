@@ -31,15 +31,8 @@ jobs:
         run: npm install
         working-directory: ./frontend
 
-      - name: Install Heroku CLI
-        run: |
-          curl https://cli-assets.heroku.com/install.sh | sh
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./frontend
 
-      - name: Authenticate with Heroku
-        run: |
-          heroku login -i
-
-      - name: Deploy to Heroku
-        run: |
-          heroku git:remote -a cicdtest
-          git push heroku HEAD:main
+      # Add deployment step here for your chosen hosting platform
