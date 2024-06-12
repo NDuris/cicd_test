@@ -19,8 +19,13 @@ app.get('/add', (req, res) => {
   // Beregn summen af de to tal
   const sum = num1Int + num2Int;
 
-  // Send summen som svar
-  res.send(`Sum of ${num1Int} and ${num2Int} is ${sum}.`);
+  // Send summen som JSON-svar
+  res.json({ sum: sum });
+});
+
+// Rute til /api-stien
+app.get('/api', (req, res) => {
+  res.send('Hello World!');
 });
 
 app.listen(port, () => {
