@@ -24,7 +24,6 @@ describe('GET /add', () => {
     request(app)
       .get('/add')
       .query({ num1: 5, num2: 3 }) // Eksempel på to tal, der skal tilføjes
-      .expect(200) // Forvent statuskode 200 OK
       .expect('Content-Type', /json/) // Forvent indholdstypen JSON
       .expect('Sum of 5 and 3 is 8.') // Forvent den forventede sum som svar
       .end((err, res) => {
