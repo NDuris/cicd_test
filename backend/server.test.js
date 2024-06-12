@@ -2,20 +2,15 @@ const request = require('supertest');
 const express = require('express');
 
 const app = express();
-const port = 3000;
-
 app.get('/api', (req, res) => {
   res.send('Hello World!');
 });
 
-// Integrationstest til at teste serverens funktionalitet
-describe('Server functionality', () => {
-  // Test, der kontrollerer, om serveren svarer på /api-endepunktet
-  it('responds with Hello World! from /api endpoint', done => {
+describe('GET /api', () => {
+  it('responds with Hello World!', done => {
     request(app)
       .get('/api')
-      .expect(200) // Forvent HTTP-statuskode 200 (OK)
-      .expect('Hello World!') // Forvent svarteksten "Hello World!"
+      .expect('Hello World!')
       .end((err, res) => {
         if (err) return done(err);
         done();
@@ -23,18 +18,18 @@ describe('Server functionality', () => {
   });
 });
 
-// Start serveren før integrationstestene
-beforeAll(done => {
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-    done();
-  });
-});
-
-// Luk serveren efter integrationstestene
-afterAll(done => {
-  app.close(() => {
-    console.log('Server closed');
-    done();
+describe('GET /add', () => {
+  it('responds with the sum of two numbers', done => {
+    // Send anmodning til /add med to tal som query parametre
+    request(app)
+      .get('/add')
+      .query({ num1: 5, num2: 3 }) // Eksempel på to tal, der skal tilføjes
+      .expect(200) // Forvent statuskode 200 OK
+      .expect('Content-Type', /json/) // Forvent indholdstypen JSON
+      .expect('Sum of 5 and 3 is 8.') // Forvent den forventede sum som svar
+      .end((err, res) => {
+        if (err) return done(err);
+        done();
+      });
   });
 });
