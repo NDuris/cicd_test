@@ -37,14 +37,14 @@ jobs:
 
       - name: Authenticate with Heroku
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
           echo $HEROKU_API_KEY | heroku auth:token
           heroku auth:whoami
 
       - name: Deploy to Heroku
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY}}
         run: |
           heroku git:remote -a cicdtest
           git push heroku HEAD:main
