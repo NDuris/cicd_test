@@ -6,34 +6,16 @@ app.get('/api', (req, res) => {
   res.send('Hello World!');
 });
 
-
-describe('GET /api', () => {
-  it('responds with Hello World!', done => {
+describe('GET /add', () => {
+  it('responds with the sum of two numbers', done => {
+    // Send anmodning til /add med to tal som query parametre
     request(app)
-      .get('/api')
-      .expect('Hello World!')
+      .get('/add')
+      .query({ num1: 5, num2: 3 }) // Eksempel på to tal, der skal tilføjes
+      .expect('Sum of 5 and 3 is 8.') // Forvent den korrekte svar tekst
       .end((err, res) => {
         if (err) return done(err);
         done();
       });
   });
 });
-
-app.get('/add', (req, res) => {
-    console.log('Received query parameters:', req.query); // Log query-parametrene
-    // Resten af koden...
-  });
-
-describe('GET /add', () => {
-    it('responds with the sum of two numbers', done => {
-      // Send anmodning til /add med to tal som query parametre
-      request(app)
-        .get('/add')
-        .query({ num1: 5, num2: 3 }) // Eksempel på to tal, der skal tilføjes
-        .expect('Sum of 5 and 3 is 8.') // Opdater forventning til den korrekte svartekst
-        .end((err, res) => {
-          if (err) return done(err);
-          done();
-        });
-    });
-  });
