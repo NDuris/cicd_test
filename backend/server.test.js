@@ -24,7 +24,7 @@ describe('Server functionality', () => {
 });
 
 // Start serveren før integrationstestene
-before(done => {
+beforeAll(done => {
   app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
     done();
@@ -32,7 +32,7 @@ before(done => {
 });
 
 // Luk serveren efter integrationstestene
-after(done => {
+afterAll(done => {
   app.close(() => {
     console.log('Server closed');
     done();
